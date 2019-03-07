@@ -21,7 +21,7 @@ yarn start
 
 Redux is an open-source JavaScript library for managing application state. 
 
-The pattern that follows is the purposed by the [flux patter](https://facebook.github.io/flux/). The base idea of this pattern is to have unidirectional events to be able to have a predictable state after each event on a single source of true (the store).
+The pattern that follows is the purposed by the [flux pattern](https://facebook.github.io/flux/). The base idea of this pattern is to have unidirectional events to be able to have a predictable state after each event on a single source of true (the store).
 
 ![image](https://cdn-images-1.medium.com/max/1600/0*95tBOgxEPQAVq9YO.png)
 
