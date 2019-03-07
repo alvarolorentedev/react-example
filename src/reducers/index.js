@@ -1,4 +1,4 @@
-import { INCREMENT } from "../constants"
+import { INCREMENT } from "../actions"
 import { combineReducers } from 'redux'
 
 const counter = (state = 0, action) => {

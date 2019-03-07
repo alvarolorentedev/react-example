@@ -1,24 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { ActionCreators } from '../../actions';
 import './App.css';
+import EmotionalButton from '../DarkModeSwitcher/EmotionalButton'
 import { counter, counterSquare } from '../../selector'
 
-class App extends Component {
-  render() {
-    const { counter, counterSquare, increment } = this.props
-    return (
-      <div className="App">
-        <header className="App-header">
-          <button onClick={increment}>increment</button>
-          <p>value: {counter}</p>
-          <p>value Square: {counterSquare}</p>
-        </header>
-      </div>
-    );
-  }
-}
+
+const App = ({ counter, counterSquare, increment }) => (
+    <div className="App">
+      <header className="App-header">
+        <button onClick={increment}>increment</button>
+        <p>value: {counter}</p>
+        <p>value Square: {counterSquare}</p>
+          <EmotionalButton />
+      </header>
+    </div>
+);
 
 function mapStateToProps(state){
   return { 
