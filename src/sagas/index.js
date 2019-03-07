@@ -5,8 +5,8 @@ function* incrementTwice(action) {
     yield put({type: INCREMENT});
  }
 
-function* mySaga() {
+function* sagaProvider() {
   yield takeEvery(INCREMENT_EVENT, incrementTwice);
 }
 
-export default mySaga;
+export default sagaProvider;

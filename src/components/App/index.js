@@ -3,15 +3,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { ActionCreators } from '../../actions';
 import './App.css';
+import { counter, counterSquare } from '../../selector'
 
 class App extends Component {
   render() {
-    const { counter, increment } = this.props
+    const { counter, counterSquare, increment } = this.props
     return (
       <div className="App">
         <header className="App-header">
           <button onClick={increment}>increment</button>
-          <p>{counter}</p>
+          <p>value: {counter}</p>
+          <p>value Square: {counterSquare}</p>
         </header>
       </div>
     );
@@ -19,8 +21,10 @@ class App extends Component {
 }
 
 function mapStateToProps(state){
-  let counter = state.counter
-  return { counter }
+  return { 
+    counter: counter(state), 
+    counterSquare: counterSquare(state), 
+  }
 }
 
 function mapDispatchToProps(dispatch){
