@@ -1,7 +1,12 @@
-import { takeEvery } from 'redux-saga/effects'
- 
+import { put, takeEvery } from 'redux-saga/effects'
+import { INCREMENT, INCREMENT_EVENT } from "../constants"
+
+function* incrementTwice(action) {
+    yield put({type: INCREMENT});
+ }
+
 function* mySaga() {
-  yield takeEvery("USER_FETCH_REQUESTED", () => {});
+  yield takeEvery(INCREMENT_EVENT, incrementTwice);
 }
 
 export default mySaga;
