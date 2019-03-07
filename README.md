@@ -1,68 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Example
 
-## Available Scripts
+This is a small example of a react app that integrates `react`, `redux`, `redux-saga` and `reselect`
 
-In the project directory, you can run:
+# Quick Start
 
-### `npm start`
+- Prerequisites: `node` and `yarn`.
+- Run:
+```sh
+git clone https://github.com/kanekotic/react-example
+cd react-example
+yarn install
+yarn start
+```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Core Concepts
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Redux
 
-### `npm test`
+[Github](https://github.com/reduxjs/redux)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Redux is an open-source JavaScript library for managing application state. 
 
-### `npm run build`
+The pattern that follows is the purposed by the [flux patter](https://facebook.github.io/flux/). The base idea of this pattern is to have unidirectional events to be able to have a predictable state after each event on a single source of true (the store).
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![image](https://cdn-images-1.medium.com/max/1600/0*95tBOgxEPQAVq9YO.png)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+The concepts that can be seen in the diagrams are:
+- View: Is the visual part of the application that is shown to the user
+- Actions: is the event caused by a users with the data involving the interaction
+- Reducers: portion of the code that listents to the actions and calculates the new state of the application.
+- Store: Single source of true for the application state.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Redux-saga
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+[Github](https://github.com/redux-saga/redux-saga)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Is a library that aims to make application side effects (i.e. asynchronous things like data fetching and impure things like accessing the browser cache) easier to manage, more efficient to execute, easy to test, and better at handling failures.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```js
+import { put, takeEvery } from 'redux-saga/effects'
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+function* incrementTwice(action) {
+    yield put({type: "INCREMENT"});
+ }
 
-## Learn More
+function* sagaProvider() {
+  yield takeEvery("INCREMENT_EVENT", incrementTwice);
+}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export default sagaProvider;
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Reselect
 
-### Code Splitting
+A selector library.
+- Selectors can compute derived data, allowing Redux to store the minimal possible state.
+- Selectors are efficient. A selector is not recomputed unless one of its arguments changes.
+- Selectors are composable. They can be used as input to other selectors.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```js
+import { createSelector } from 'reselect'
 
-### Analyzing the Bundle Size
+export const counter = state => state.counter
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+export const counterSquare = createSelector(
+    counter,
+    value => value * value
+)
+```
