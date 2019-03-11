@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { ActionCreators } from '../../actions';
+import { ActionCreators } from '../../actions/index.js';
 import './App.css';
 import EmotionalButton from '../DarkModeSwitcher/EmotionalButton'
 import { counter, counterSquare } from '../../selector'
